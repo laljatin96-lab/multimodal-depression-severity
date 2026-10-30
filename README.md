@@ -1,5 +1,8 @@
 # Project_V2 — approximately 50% observed CV procedure
 
+A machine learning research project for classifying five levels of depression
+severity using interview transcripts, audio, and visual features.
+
 The best observed participant-wise model-selection procedure achieved
 **49.8978% (244/489 repeated predictions)**, which rounds to 50% at whole-percent
 precision. It did **not** achieve an exact accuracy of at least 50%.

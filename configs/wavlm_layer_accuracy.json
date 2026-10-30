@@ -1,0 +1,29 @@
+{
+  "components": 32,
+  "speech_components": 16,
+  "C": [0.001],
+  "representations": ["final_nonzero", "layer6_nonzero"],
+  "speech_scales": [0.5, 2.0],
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 210,
+  "max_full_training_fits": 2,
+  "target_accuracy": 0.56,
+  "minimum_requested_accuracy": 0.53,
+  "policies": {
+    "previous_procedure": {},
+    "accuracy": {},
+    "new_only": {},
+    "zero_only": {},
+    "layer6_only": {}
+  },
+  "selection": "Four frozen new configurations plus exact reused49.90 previous procedure. Inner correct count, macro-F1, declared order. Final configuration uses cached inner predictions only.",
+  "features": "Existing semanticAV512 and language16; compare final-layer12 and transformer-layer6 WavLM1536 mean/std from identical fixed4s positions, omitting only exactly zero-valued waveform clips. No labels, scores, speaker guessing or shifted alignment.",
+  "preprocessing": "Fitting-only base scaler/PCA32, language scaler fixedscale.5, speech scaler/whitenedPCA16. Speechscale.5/2. Normalizedsqrtclassweights. No resampling/calibration.",
+  "capacity": "Frozen pretrained encoder;64 logistic coordinates,325 coefficients/intercepts;fixedC.001. C.01 excluded because previous inner diagnostics show overfitting.",
+  "motivation": "Verified39exactzero selectedclips in10participants motivate a quality ablation. Untested middle-layer representations may supply acoustic information for persistent Mild/Moderate errors; this is a hypothesis.",
+  "evaluation": "Same original163participants, five outer/three inner folds, seeds42/137/2026. Previous49.90 procedure and49.28 model retained. No validation/test scoring.",
+  "stopping_rule": "Exactly two feature variants, four configurations; maximum210nestedfits and2fullfits; no expansion informed by outer results.",
+  "promotion_rule": "Report best observed procedure and paired participant uncertainty separately. Preserve all previous checkpoints. Default replacement requires measured support and final inner-only selection."
+}

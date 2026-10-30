@@ -1,0 +1,3 @@
+model,reference,gained,lost,correct,reference_correct,net_better_people,net_worse_people
+accuracy,language_control,8,5,244,241,8,5
+wavlm_only,language_control,13,11,243,241,11,9

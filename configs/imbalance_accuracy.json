@@ -1,0 +1,20 @@
+{
+  "features": ["text", "text_audio", "text_visual", "text_audio_visual"],
+  "reductions": ["global16", "block32"],
+  "C": [0.01, 0.1],
+  "samplers": ["none", "quarter_weight", "balanced_weight", "ros20", "ros30", "smote20", "smote30", "joint_smote30"],
+  "policies": {"accuracy": {}, "severe_guarded": {}, "smote": {}, "ros": {}},
+  "fit_seed": 42,
+  "max_iter": 3000,
+  "neighbors": 2,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "expected_candidates": 129,
+  "target_accuracy": 0.53,
+  "severe_accuracy_tolerance": 0.02,
+  "selection": "Freeze before any new outer scores: baseline plus 128 candidates. Accuracy ranks pooled inner correct count, macro F1, then declared order. Severe guarded maximizes inner severe true positives among candidates within two percentage points of best inner accuracy, then correct count and macro F1. SMOTE and ROS policies rank accuracy within the named sampler family. No outer predictions or official holdouts select candidates.",
+  "preprocessing": "Real-fitting-only standardization and either global PCA16 or independent block PCA (text16/audio8/visual8). Four prespecified modality combinations. Reuse identical fold-local transforms across regularization/sampling candidates; never across folds.",
+  "augmentation": "SMOTE with up to two real same-class neighbors, reduced automatically to n_class-1, after real-only preprocessing. Severe target 20 or 30 including original examples; ROS repeats fitting severe rows to the same targets. Joint SMOTE targets at least30 mild/moderate/moderately severe and25 severe rows. No downsampling. Singleton severe falls back to explicit ROS with receipt; no invented independent participants. Weighting uses real-fitting counts. Total fitting weight always equals real fitting N.",
+  "finalization": "Choose the final refit using pooled cached inner predictions only, freeze model hashes, then evaluate once on the original 56 validation participants. Compare to the existing frozen 49.08 baseline refit. Validation is previously exposed and is not independent confirmation; never use it for further tuning. Do not newly score test. Preserve previous files and reference checkpoints.",
+  "limitations": "Further exploratory search after extensive prior participant and holdout exposure. Repeated nested training CV controls current fit/selection leakage but does not erase adaptive dataset reuse. Seven unique severe participants remain seven; synthetic rows add no clinical evidence. No promise of 53-60 percent."
+}

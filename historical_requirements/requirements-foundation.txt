@@ -1,0 +1,14 @@
+# Optional offline TabPFN runtime; install after requirements-lock.txt and requirements-semantic.txt
+tabpfn==9.2.0
+skrub==0.10.1
+lightgbm==4.7.0
+mlx==0.32.4
+mlx-metal==0.32.4
+einops==0.8.2
+pydantic==2.14.1
+pydantic-core==2.50.1
+pydantic-settings==2.16.1
+pydot==4.0.1
+python-dotenv==1.2.4
+typing-inspection==0.4.4
+annotated-types==0.8.0

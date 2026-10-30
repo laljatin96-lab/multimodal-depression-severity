@@ -1,0 +1,36 @@
+{
+  "best_observed_selection_procedure": {
+    "accuracy": 0.49897750511247446,
+    "correct": 244,
+    "repeated_predictions": 489,
+    "unique_participants": 163,
+    "repeats": 3,
+    "rounded_whole_percent": 50,
+    "at_least_50_percent": false,
+    "macro_f1": 0.2570610369251744,
+    "balanced_accuracy": 0.26876576582458933
+  },
+  "retained_checkpoint_associated_procedure": {
+    "accuracy": 0.49284253578732107,
+    "correct": 241,
+    "repeated_predictions": 489,
+    "source_checkpoint_sha256": "599f1ec55d82a4a61f199aace525a23dd7f13f0e6afa77625086a4c4bc20b660"
+  },
+  "majority_class_accuracy": 0.4723926380368098,
+  "gain_over_retained": {
+    "percentage_points": 0.613496932515345,
+    "participant_paired_ci95_percentage_points": [
+      -0.8179959100204526,
+      2.0449897750511314
+    ],
+    "repeated_predictions_gained": 8,
+    "repeated_predictions_lost": 5,
+    "statistically_supported_accuracy_gain": false
+  },
+  "severe_recall": 0,
+  "independent_test_accuracy": null,
+  "new_training_performed": false,
+  "new_accuracy_claim": false,
+  "questionnaire_inference_inputs": false,
+  "scope": "Exploratory, extensively reused original training cohort; independent confirmation unavailable"
+}

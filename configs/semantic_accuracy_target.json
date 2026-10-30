@@ -1,0 +1,16 @@
+{
+  "numeric_config": "configs/ensemble_accuracy_target.json",
+  "frozen_plan": "results/final_evaluation_plan.json",
+  "corpus_directory": "results/transcript_corpus",
+  "model_directory": "checkpoints/pretrained_minilm",
+  "feature_directory": "results/semantic_features",
+  "feature_inputs": ["semantic", "semantic_av"],
+  "components": [null, 32], "C_candidates": [0.001, 0.01, 0.1, 1.0], "max_iter": 2000,
+  "outer_folds": 5, "inner_folds": 3, "fold_seeds": [42, 137, 2026], "fit_seed": 42,
+  "target_accuracy": 0.55, "cpu_threads": 2, "expected_jobs": 15, "expected_fits": 780,
+  "bootstrap_repetitions": 5000, "bootstrap_seed": 20261025,
+  "selection": "Select representation, optional 32-component PCA and C by pooled inner accuracy, then five-class macro-F1, then declared candidate order. Include training-derived majority fallback. Score only selected pipeline on outer folds.",
+  "scope": "Separate fixed, locally computed public MiniLM text-embedding extension. No encoder fine-tuning. All transcript token chunks included with length-weighted normalized mean. Original AV study/reference unchanged.",
+  "leakage_controls": "No participant IDs, labels, questionnaire scores or recorded gender as inputs. Frozen per-document encoder has no adaptation to any local data. Scaler, PCA and classifier fit only inner/outer fitting participants. Whole interview text; speaker identity unavailable.",
+  "limitations": "Post-final exploratory development on reused training folds after prior experiments. No independent confirmation, no new validation/test scoring, no final refit or reference replacement. Public encoder pretraining overlap with this corpus is unknown. No post-hoc expansion of this declared search after outer results."
+}

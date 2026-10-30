@@ -1,0 +1,29 @@
+{
+  "transforms": [
+    "rank_gaussian",
+    "asinh"
+  ],
+  "components": [
+    16,
+    32
+  ],
+  "C": [
+    0.001,
+    0.01
+  ],
+  "weight_power": 0.5,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 390,
+  "target_accuracy": 0.5107975460122699,
+  "policies": {
+    "accuracy": {},
+    "robust_only": {}
+  },
+  "selection": "Eight new configurations; primary accuracy policy also permits cached baseline. Rank by pooled inner correct, macro-F1, then fixed order. No search expansion based on outer scores.",
+  "preprocessing": "Only original AV columns384:512 get rank-Gaussian or median/IQR asinh transform. Fit every transform, StandardScaler and PCA on relevant training participants only. Rank endpoint .5/Nfit, no subsampling; asinh zero-IQR fallback fitting std then1. Fixed square-root inverse class weights. Text unchanged before ordinary scaling/PCA.",
+  "features": "Original MiniLM384 + audio78 + visual50. No questionnaire, score, severity, ID, age or gender inference features. All rows retained. No synthetic data.",
+  "evaluation": "Original 163 people, 5 outer x 3 inner folds, seeds42/137/2026. No new validation/test scoring. Final config uses cached inner predictions only. Bootstrap participants jointly across all three predictions. All comparisons remain exploratory after dataset reuse.",
+  "stopping_rule": "One new robust-preprocessing study; eight configs, fifteen outer jobs, at most two full-training fits. Target +2 percentage points; no guaranteed gain."
+}

@@ -1,0 +1,12 @@
+{
+  "frozen_plan": "results/final_evaluation_plan.json",
+  "raw_features": "results/raw_frame_features",
+  "cached_diagnostic": "results/modality_diagnostics",
+  "C_candidates": [0.01, 0.1, 1.0, 10.0],
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "fold_seeds": [42, 137, 2026],
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "rationale": "One predeclared representation change after the acoustic variance audit: raw-frame MFCC means/population standard deviations replace summaries of 0.5-second means. Preserve visual summaries and exact common crop. Compare A and AV with/without class weights using identical nested training partitions and C grid to the saved cached-summary diagnostic. Reuse those verified comparison records. No further search, validation/test scoring, final refit or reference-model replacement. Post-final exploratory results cannot provide independent confirmation."
+}

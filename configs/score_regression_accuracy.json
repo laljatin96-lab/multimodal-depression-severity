@@ -1,0 +1,17 @@
+{
+  "feature_inputs": ["semantic", "semantic_av", "deep_av", "deep_av_text"],
+  "kernels": ["linear", "rbf"],
+  "alpha": [0.1, 1.0, 10.0],
+  "policies": {"fixed_score_bins": {}, "learned_score_cuts": {}},
+  "cut_radius": 4.0,
+  "cut_step": 0.5,
+  "minimum_cut_gap": 1.0,
+  "expected_jobs": 15,
+  "inner_regressor_fits_per_job": 72,
+  "cpu_threads": 2,
+  "target_accuracy": 0.55,
+  "target": "Genuine PHQ-8 total is a fitting target only; evaluation remains the original five-class mapping. Never put questionnaire labels into feature inputs.",
+  "preprocessing": "Real fitting block-wise standardization, divide by sqrt(block dimension), concatenate then divide by sqrt(block count). No PCA or feature truncation. Center targets on fitting mean; predict and clip to 0..24. Linear or RBF gamma=0.5 kernel ridge, no synthetic samples.",
+  "selection": "Fixed bins use 4.5/9.5/14.5/19.5; learned cuts maximize inner OOF correct count via exact ordered dynamic programming within +/-4, step0.5, gap>=1. Ties prefer minimum displacement then lower cuts. Compare 24 regressors and unchanged baseline by inner correct count, macro-F1, declared order. Both policies reported. Outer PHQ/class labels never tune or fit.",
+  "limits": "Same original participants and nested folds; saved baseline reused, no validation/test scoring. No post-outer search expansion. Predictions are numerical scores plus five-class decisions, not probability estimates. Repeated exploratory development, no independent confirmation."
+}

@@ -1,0 +1,4 @@
+catboost==1.2.10
+graphviz==0.21
+plotly==7.1.0
+narwhals==2.27.1

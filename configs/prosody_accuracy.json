@@ -1,0 +1,37 @@
+{
+  "include_language": [
+    true,
+    false
+  ],
+  "components": [
+    8,
+    16
+  ],
+  "C": [
+    0.001,
+    0.01
+  ],
+  "block_scales": [
+    0.5,
+    2.0
+  ],
+  "base_components": 32,
+  "language_scale": 0.5,
+  "weight_power": 0.5,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 765,
+  "target_accuracy": 0.56,
+  "minimum_requested_accuracy": 0.53,
+  "policies": {
+    "language_control": {},
+    "accuracy": {},
+    "prosody_only": {}
+  },
+  "selection": "Preserved49.28 age-free language control plus16 new original-AV/semantic+eGeMAPS configurations, with and without fixed language block. Primary pooled inner accuracy, macro-F1, fixed order. Control policy always reuses saved checkpoint. Final config uses inner predictions only. No post-result expansion.",
+  "features": "116 fixed eGeMAPS recording summaries from audited original training source files. Base512 features preserved. Optional16 fixed language features. No questionnaire/score/demographic/ID features.",
+  "preprocessing": "Own fitting participants only: original base standardization/PCA32, language standardization at0.5, acoustic median imputation/standardization/PCA8 or16 scaled0.5 or2. Square-root class weights.",
+  "evaluation": "Same163 training participants, original5 outer/3 inner and seeds42/137/2026. Explicit matched49.28 control plus49.08 baseline. All preprocessing and tuning within fitting folds. No new official validation or test extraction/scoring. Repeated exploratory history remains a limitation.",
+  "stopping_rule": "One newly recovered acoustic representation,16 configurations. No broad follow-up search to force53 or56. Preserve all originals and candidates."
+}

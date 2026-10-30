@@ -1,0 +1,15 @@
+{
+  "source_config": "configs/semantic_accuracy_target.json",
+  "source_directory": "results/semantic_accuracy_target",
+  "foundation_directory": "checkpoints/pretrained_tabpfn_v2",
+  "feature_inputs": ["semantic", "semantic_av"],
+  "components": [null, 32], "C_candidates": [0.001, 0.01, 0.1, 1.0],
+  "foundation_components": [32, 64], "foundation_estimators": 4,
+  "lda_covariance": ["ledoit_wolf", "oas"], "max_iter": 2000,
+  "outer_folds": 5, "inner_folds": 3, "fold_seeds": [42, 137, 2026], "fit_seed": 42,
+  "target_accuracy": 0.55, "cpu_threads": 2, "expected_jobs": 15, "expected_fits": 1140,
+  "bootstrap_repetitions": 5000, "bootstrap_seed": 20261025,
+  "selection": "25 candidates: majority, 16 matched logistic controls, 4 TabPFN-v2 pipelines, 4 shrinkage LDA pipelines. Select by pooled inner accuracy, then five-class macro-F1, then declared order. Only the selected pipeline is scored on each outer fold.",
+  "foundation": "Fixed public Prior Labs TabPFN-v2 checkpoint; four ensemble members, CPU float32, no gradient fine-tuning, no probability balancing, no extra tuning. Standardization plus fold-local PCA32/PCA64 bounds feature count and compute before in-context fitting. Local explicit checkpoint; network connections forbidden.",
+  "limits": "All 275 participants and 281 sources remain accounted for; only the 163 official training participants fit/score. Fixed five-class task and original folds. Repeated exploratory development after historical test exposure; no independent confirmation. No new validation/test scoring, no original model replacement, no post-hoc search expansion. Public semantic encoder pretraining overlap remains unknown."
+}

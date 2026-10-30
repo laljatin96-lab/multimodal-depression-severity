@@ -1,0 +1,18 @@
+{
+  "numeric_config": "configs/ensemble_accuracy_target.json",
+  "frozen_plan": "results/final_evaluation_plan.json",
+  "corpus_directory": "results/transcript_corpus",
+  "feature_inputs": ["text_word", "text_char", "text_av", "av"],
+  "C_candidates": {"text_word": [1.0, 10.0, 100.0], "text_char": [1.0, 10.0, 100.0], "text_av": [0.1, 1.0, 10.0], "av": [0.01, 0.1, 1.0]},
+  "text": {"min_df": 2, "max_df": 0.95, "word_max_features": 10000, "char_max_features": 12000, "word_ngrams": [1, 2], "char_ngrams": [3, 5], "sublinear_tf": true},
+  "fusion_av_weight": 0.5,
+  "max_iter": 2000,
+  "outer_folds": 5, "inner_folds": 3, "fold_seeds": [42, 137, 2026], "fit_seed": 42,
+  "target_accuracy": 0.55, "cpu_threads": 2,
+  "expected_jobs": 15, "expected_fits": 600,
+  "bootstrap_repetitions": 5000, "bootstrap_seed": 20261025,
+  "selection": "Select representation and C by pooled inner accuracy, then five-class macro-F1, then declared candidate order. Include fold-trained majority fallback. Score only the selected pipeline on outer folds.",
+  "scope": "Separate locally processed interview-text extension authorized by the user's request to change strategy. Original AV study and frozen reference remain unchanged. No downloads or uploads.",
+  "leakage_controls": "No label/PHQ/gender/ID fields as inputs. Numeric tokens and rows explicitly mentioning questionnaire scores are removed by fixed label-free rules. TF-IDF vocabulary/IDF, numeric scaler and classifier fit only fitting folds. Speaker identity is unavailable, so documents are whole supplied interview text. Rule filtering does not prove absence of all possible answer/label cues.",
+  "limitations": "55% is an internal five-class cross-validation target, not a guarantee. Only 163 official training participants fit/score; all 275 participants and 281 sources are accounted for. Test already used historically; no new validation/test evaluation or reference replacement. No post-hoc search expansion based on outer results."
+}

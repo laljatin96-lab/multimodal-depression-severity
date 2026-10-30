@@ -1,0 +1,54 @@
+{
+  "feature_inputs": [
+    "semantic",
+    "semantic_av"
+  ],
+  "C": [
+    0.01,
+    0.1
+  ],
+  "components": 32,
+  "severe_weights": [
+    2,
+    4
+  ],
+  "ordinal_weight_powers": [
+    0,
+    0.5
+  ],
+  "thresholds": [
+    null,
+    0.02,
+    0.04,
+    0.06,
+    0.08,
+    0.1,
+    0.15,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.7,
+    0.9
+  ],
+  "policies": {
+    "severe_priority": {
+      "max_accuracy_loss": 0.05,
+      "max_severe_fpr": 0.1
+    },
+    "accuracy_guarded": {
+      "max_accuracy_loss": 0.02,
+      "max_severe_fpr": 0.05
+    }
+  },
+  "target_accuracy": 0.5338,
+  "max_iter": 2000,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "inner_pipeline_fits_per_job": 51,
+  "max_outer_pipeline_fits_per_job": 2,
+  "selection": "Within each outer fitting set only: require inner accuracy loss versus unchanged 49.08% procedure within the policy cap and severe false-positive rate within cap. Maximize severe true positives, then minimize nonsevere classification errors, then overall correct count, macro-F1 and declared order. If none qualify preserve baseline with explicit failure flag. Both policies reported.",
+  "scope": "Reuse verified original features, participant folds and baseline outer checkpoints. Regenerate only missing inner probabilities. No new augmentation method; two baseline-selected pipelines may replay their already declared severe interpolation. New weighting and ordinal candidates use real fitting participants only. Thresholds never use outer labels.",
+  "limitations": "Post-final exploratory study after repeated searches. Inner harm constraints do not guarantee held-out harm bounds. Same seven severe people in each repeat. No independent evaluation or deployment promotion."
+}

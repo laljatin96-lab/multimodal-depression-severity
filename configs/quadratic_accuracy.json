@@ -1,0 +1,34 @@
+{
+  "components": [
+    8,
+    16
+  ],
+  "pooled_diagonal_fractions": [
+    0.5,
+    0.9
+  ],
+  "class_variance_fractions": [
+    0.25,
+    0.75
+  ],
+  "variance_prior_participants": 10,
+  "variance_floor": 1e-06,
+  "prior_power": 0.5,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 405,
+  "target_accuracy": 0.56,
+  "minimum_requested_accuracy": 0.53,
+  "policies": {
+    "language_control": {},
+    "accuracy": {},
+    "quadratic_only": {}
+  },
+  "selection": "Eight new regularized quadratic configurations and exact reused language control. Select pooled inner correct count, macro-F1, declared order. Full-data config selected from cached inner predictions only.",
+  "features": "Original semantic_AV512 features and 16 fixed age-free language features. No questionnaire answers, scores, demographics, participant IDs or labels enter inference features.",
+  "preprocessing": "Fitting-only base scaling/PCA8 or16; language scaling; concatenated-coordinate scaling. Shared covariance shrunk toward diagonal; class-specific diagonal variance pooled with ten fitting-participant equivalents. Fixed sqrt-frequency priors match effective original sqrt class weighting. No resampling.",
+  "evaluation": "163 original training participants, original5 outer/3 inner folds, seeds42/137/2026. Reuse control checkpoints; no previous failed fits. No validation/test scoring. Exploratory comparison after long experiment history.",
+  "motivation": "Mild and Moderate errors concentrate in majority predictions; a strongly regularized class-dependent covariance permits curved boundaries absent from linear logistic and prior shared-covariance LDA. This hypothesis is not a claim that errors are proven heteroscedastic.",
+  "stopping_rule": "One new model family, eight frozen configurations; no post-result grid expansion or threshold tuning."
+}

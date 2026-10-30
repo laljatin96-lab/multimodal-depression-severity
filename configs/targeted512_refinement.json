@@ -1,0 +1,34 @@
+{
+  "feature_inputs": [
+    "semantic_av"
+  ],
+  "selected_features": [
+    128,
+    256,
+    512,
+    "pca32"
+  ],
+  "C_candidates": [
+    0.003,
+    0.03
+  ],
+  "interventions": [
+    "none",
+    "quarter_weight"
+  ],
+  "fit_seed": 42,
+  "max_iter": 2000,
+  "policies": {
+    "accuracy": {}
+  },
+  "expected_jobs": 15,
+  "inner_pipeline_fits_per_job": 48,
+  "inner_base_fits_per_job": 48,
+  "cpu_threads": 2,
+  "target_accuracy": 0.5338,
+  "selection": "Unchanged saved baseline plus 16 new candidates on the existing 512 features. Select by pooled inner correct count, five-class macro-F1, then declared order with baseline first. Only selected models score outer folds; no search expansion after outer results.",
+  "preprocessing": "StandardScaler followed by real-fitting-only supervised ANOVA top128/top256/top512 or baseline-style PCA32. No extraction, synthesis, exclusion, new modality or gender. Only C=.003/.03 and weighting exponent0/.25 are new; old C=.001/.01/.1/1 and aggressive weighting/results are reused.",
+  "balancing": "Weights (N/(5*n_class))**.25 or 1, normalized to original real fitting N. Each original participant contributes exactly one real feature row. No invented records or changed labels.",
+  "scope": "Preserve all 275 participants (163train/56validation/56test), all original results and checkpoints. Same five outer/three inner folds and seeds42/137/2026. Training CV only; no new official validation/test scoring.",
+  "limitations": "Repeated exploratory use of these training participants after prior holdout exposure is not independent confirmation. Negative ordinal and PHQ regression studies are reused, not retrained. No full-training refit unless a new procedure demonstrates a verified accuracy gain."
+}

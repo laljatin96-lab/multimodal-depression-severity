@@ -1,0 +1,19 @@
+{
+  "feature_inputs": ["semantic", "semantic_av"],
+  "selected_features": [16, 64],
+  "C_candidates": [0.01, 0.1],
+  "interventions": ["none", "sqrt_weight", "balanced_bootstrap"],
+  "bootstrap_members": 3,
+  "fit_seed": 42,
+  "max_iter": 2000,
+  "policies": {"accuracy": {}},
+  "expected_jobs": 15,
+  "inner_pipeline_fits_per_job": 72,
+  "inner_base_fits_per_job": 120,
+  "cpu_threads": 2,
+  "target_accuracy": 0.5338,
+  "preprocessing": "Scale and select top-k ANOVA features on real fitting participants only, before resampling. Exclude constant fitting columns. No PCA or new feature extraction.",
+  "balancing": "Square-root inverse class weights normalized to real fitting count, or three classifiers trained on balanced bootstrap draws. Each bootstrap retains every real fitting row and adds minority rows sampled with replacement to reach the largest fitting class. Normalize total fitting weight to the real participant count. No perturbed vectors or new participants.",
+  "selection": "Compare the unchanged saved baseline and 24 new candidates by pooled inner correct count, five-class macro-F1, then declared order (baseline first). Average the three bootstrap classifiers' probabilities. Only the selected candidate is evaluated on each outer fold. No outer-driven expansion or thresholds.",
+  "limits": "Reuse all original participant folds and baseline checkpoints. No validation/test scoring, no independent confirmation after repeated exploratory searches, no baseline replacement without verified improvement. Entire supplied dataset remains inventoried; only original training participants enter this study."
+}

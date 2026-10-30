@@ -1,0 +1,21 @@
+{
+  "modes": ["class_only", "phq", "phq_ptsd"],
+  "use_av": [false, true],
+  "weight_powers": [0.0, 0.5],
+  "epochs": [60, 140],
+  "text_components": 32,
+  "av_components": 16,
+  "hidden": 16,
+  "dropout": 0.35,
+  "learning_rate": 0.003,
+  "weight_decay": 0.03,
+  "label_smoothing": 0.05,
+  "phq_loss_weight": 0.5,
+  "ptsd_loss_weight": 0.25,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "target_accuracy": 0.53,
+  "policies": {"accuracy": {}, "class_only": {}, "multitask": {}},
+  "primary": "accuracy"
+}

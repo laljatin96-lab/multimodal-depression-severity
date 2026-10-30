@@ -1,0 +1,21 @@
+{
+  "capacity_profiles": [
+    {"depth": 2, "iterations": 120, "learning_rate": 0.03, "l2_leaf_reg": 20},
+    {"depth": 4, "iterations": 240, "learning_rate": 0.05, "l2_leaf_reg": 40}
+  ],
+  "auto_class_weights": ["None", "SqrtBalanced", "Balanced"],
+  "fusion_weights": [[0.3333333333333333,0.3333333333333333,0.3333333333333333], [0.6,0.2,0.2], [0.2,0.6,0.2], [0.2,0.2,0.6], [0.4,0.4,0.2], [0.4,0.2,0.4], [0.2,0.4,0.4]],
+  "text_components": 32,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "border_count": 32,
+  "boosting_type": "Ordered",
+  "expected_jobs": 15,
+  "inner_head_fits_per_job": 108,
+  "target_accuracy": 0.60,
+  "selection": "For each gender variant compare 6 shared CatBoost profiles x 7 nonzero text/audio/visual probability weights on inner OOF participants. Maximize correct count then five-class macro-F1 then declared order. Both variants are always reported. No outer or official validation/test data enter tuning or early stopping.",
+  "features": "Verified cached MiniLM 384, audio 78 and visual 50. Standardize and PCA text to 32 using real fitting rows only; numeric audio/visual unchanged. Optional recorded gender is native one-hot categorical with unknown retained; never infer gender from voice. All three modality weights remain positive.",
+  "regularization": "Shallow symmetric trees, L2 penalties, ordered boosting, 32 borders, Bayesian bootstrap, random_strength=1. Fixed candidate tree budgets; no eval_set or holdout-driven early stopping. Native None/SqrtBalanced/Balanced weights use fitting labels only. No synthesis or participant duplication.",
+  "holdout_plan": "After all nested jobs, aggregate cached inner OOF decisions (12 predictions per training person) to choose full-training profiles/fusion weights and gender primary. Select both historical baseline refit profiles from their existing inner OOF decisions by the same ranking. Fit full training only, freeze all four artifacts and chosen primary before any new official holdout inference. Score validation and test once and report both variants, both baseline refits and majority. No refitting or search expansion after scoring.",
+  "limitations": "Post-final exploratory development: official validation/test were already used historically, so reused holdout results are not independent confirmation. Nested CV compares against original 48.47% and 49.08% procedures on unchanged folds. Full-training baseline refits are new comparisons, not historical test scores. Preserve all old artifacts."
+}

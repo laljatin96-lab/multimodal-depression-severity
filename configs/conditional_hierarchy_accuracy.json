@@ -1,0 +1,19 @@
+{
+  "boundaries": [0, 1],
+  "components": [8, 16],
+  "C": [0.001, 0.01],
+  "weight_power": 0.5,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 390,
+  "target_accuracy": 0.56,
+  "policies": {"accuracy": {}, "hierarchy_only": {}},
+  "selection": "Eight new configurations. Accuracy policy also permits the cached baseline selection. Rank by pooled inner correct count, macro-F1, then fixed order. No outer or validation tuning.",
+  "features": "Original 384 MiniLM plus 128 audio/visual summaries; no demographic, questionnaire, PHQ-score or label features.",
+  "architecture": "Soft binary group gate with conditional multinomial heads. Boundary zero: class 0 versus 1-4. Boundary one: classes 0-1 versus 2-4. Multiply group probability by within-group probability; no thresholds or calibration.",
+  "preprocessing": "Each node fits its own StandardScaler/PCA on its fitting participants only. Conditional heads see only their branch fitting participants. Square-root inverse class weights are computed separately inside each node. No synthetic observations.",
+  "evaluation": "Original 5 outer x 3 inner folds and seeds 42/137/2026. All 163 participants retained. Exploratory after extensive reuse; no new official validation or test scoring. Final selection uses saved inner predictions only.",
+  "uncertainty": "5000 paired participant bootstrap samples; all three predictions for a participant travel together. Conditional on fitted models, pointwise, not adjusted for historical search or overlapping training sets.",
+  "stopping_rule": "One new approach, eight configurations, fifteen outer jobs, at most two final pipeline fits. Do not expand the grid in response to results."
+}

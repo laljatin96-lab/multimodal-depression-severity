@@ -1,0 +1,12 @@
+{
+  "comparison_config": "configs/raw_frame_comparison.json",
+  "comparison_directory": "results/raw_frame_comparison",
+  "bootstrap_repetitions": 5000,
+  "bootstrap_seed": 20261024,
+  "cpu_threads": 2,
+  "sampling": "Ordinary paired participant bootstrap; one resample of training participants is shared by every model and all three partitions in each replicate",
+  "statistic": "Raw-frame minus cached feature performance, averaged over the three fixed outer-fold partitions; five-class macro-F1 is primary",
+  "interval": "Pointwise 2.5th and 97.5th percentiles, conditional on the saved fitted models and observed dataset",
+  "comparisons": "All four predeclared raw-versus-cached pairs: A and AV, each ordinary and class-balanced",
+  "limitations": "Exploratory analysis after original final-test exposure. Does not capture training-set/model-refitting uncertainty or establish independent generalization. Partitions share participants and are never resampled as independent observations. Four comparisons are unadjusted for multiplicity. No validation/test scoring, model selection or promotion."
+}

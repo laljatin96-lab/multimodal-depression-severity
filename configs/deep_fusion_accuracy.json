@@ -1,0 +1,18 @@
+{
+  "feature_inputs": ["deep_audio", "deep_visual", "deep_av", "deep_av_text"],
+  "C": [0.01, 0.1, 1.0, 10.0],
+  "weight_powers": [0.0, 0.5],
+  "deep_components": 16,
+  "text_av_components": 32,
+  "baseline_weights": [0.0, 0.25, 0.5, 0.75],
+  "policies": {"accuracy_fusion": {}, "single_model": {}},
+  "expected_jobs": 15,
+  "inner_head_fits_per_job": 96,
+  "max_iter": 2000,
+  "cpu_threads": 2,
+  "target_accuracy": 0.55,
+  "selection": "Primary accuracy_fusion selects by inner correct count, then five-class macro-F1, then fixed order. Secondary single_model excludes fractional blend weights. The existing fold-selected baseline is candidate zero. Neither outer labels nor official validation/test labels select features, classifiers or blend weights.",
+  "preprocessing": "Per input block: fit standardization, full-SVD PCA and component standardization on real fitting participants only. Reuse identical transforms across inner head candidates. All rows of independently pooled supplied audio/face features; no synthetic vectors or invented labels.",
+  "scope": "Fixed 32 new heads, 129 choices including baseline and soft blends, same original 15 outer folds. Reuse saved baseline inner probabilities and outer checkpoints. No search expansion after outer results.",
+  "limitations": "Exploratory training CV after previous model searches and original test exposure; no independent confirmation or promise of 55%. Participant-only speech and supplied face-alignment quality remain unverified. Supplied pretrained embedding provenance is documented by the local dataset manual, not independently reproduced."
+}

@@ -1,0 +1,11 @@
+{
+  "policies": {"accuracy": 5, "top3": 3, "top9": 9},
+  "expected_jobs": 15,
+  "cpu_threads": 2,
+  "target_accuracy": 0.53,
+  "primary": "accuracy",
+  "selection": "Within each original outer fitting fold, rank the 64 saved baseline logistic configurations by their saved pooled inner correct count, macro F1, then original candidate order. Exclude the majority dummy from averaging. Refit the top nine on real outer fitting participants and average normalized class probabilities uniformly. Fixed top-five average is primary; top-three and top-nine are prespecified secondary comparisons. No outer labels, prediction correctness, validation outcomes or new tuning select members, K or weights.",
+  "finalization": "Rank configurations by aggregated existing inner predictions over all15 folds. Refit top9 on all163 training participants and save top5/top3/top9. Freeze hashes before descriptive reused-validation scoring. Do not select K using validation or new outer results. Never newly score test.",
+  "scope": "Direct optimization of the best existing logistic family by model averaging; no new features, class merging or raw data extraction. Existing weight/interpolation candidates retain their original real-fitting-only preprocessing and training-only augmentation. Preserve all prior models and results.",
+  "limitations": "Exploratory additional procedure after PLS/ridge underperformed and after many previous searches on these participants. Same five outer/three inner folds and three seeds; this is not independent confirmation. Primary K=5 is fixed before this procedure's outer scores; secondary K results cannot redefine primary success."
+}

@@ -1,0 +1,12 @@
+# Direct inference dependencies from the tested Python3.12 environment
+numpy==2.5.4
+scipy==1.18.1
+pandas==3.1.0
+scikit-learn==1.9.1
+threadpoolctl==3.7.0
+torch==2.14.1
+matplotlib==3.11.2
+transformers==4.57.6
+huggingface-hub==0.36.2
+tokenizers==0.22.2
+safetensors==0.8.0

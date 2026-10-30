@@ -1,0 +1,23 @@
+{
+  "frozen_plan": "results/final_evaluation_plan.json",
+  "previous_protocol": "results/accuracy_model_comparison/protocol.json",
+  "feature_inputs": ["cached_visual", "temporal_visual", "cached_av", "temporal_av"],
+  "statistics": ["mean", "std", "median", "iqr", "p90_p10", "mean_abs_step", "lag1_correlation"],
+  "selector_k": 20,
+  "C_candidates": [0.01, 0.1, 1.0, 10.0],
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "fold_seeds": [42, 137, 2026],
+  "fit_seed": 42,
+  "max_iter": 2000,
+  "cpu_threads": 2,
+  "expected_jobs": 60,
+  "expected_fits": 780,
+  "bootstrap_repetitions": 5000,
+  "bootstrap_seed": 20261024,
+  "selection": "Pooled inner accuracy, then five-class macro-F1, then smaller C",
+  "hypothesis": "Distribution and adjacent-bin dynamics may contain useful information absent from mean/std summaries. Test richer features against matched mean/std controls with the same fixed fold-local ANOVA top-20 selector and regularized logistic model.",
+  "feature_policy": "Label-free per-participant summaries of existing observed 0.5-second bins. Adjacent changes/correlations use only consecutive valid bins within each modality, never bridge missing bins or pair modalities. Constant or unsupported lag statistics are zero with support recorded separately; support is not a predictor.",
+  "selection_policy": "StandardScaler and ANOVA selector fit within each inner/outer fitting fold. Select up to 20 nonconstant columns; exact ANOVA ties favor earlier schema order. No gender, participant IDs, interview lengths or quality counts as predictors.",
+  "limits": "Post-final exploratory training-only comparison. All 275 participants and 281 sources remain covered; fit/score only the 163 official training participants. Retain the original crop and unresolved speaker/timing limitations. No validation/test scoring, new full-training model, or frozen-reference replacement. Do not expand the search based on these outer scores."
+}

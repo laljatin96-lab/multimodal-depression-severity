@@ -1,0 +1,25 @@
+{
+  "components": 32,
+  "C": [
+    0.001,
+    0.01
+  ],
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 135,
+  "target_accuracy": 0.56,
+  "minimum_requested_accuracy": 0.54,
+  "policies": {
+    "language_control": {},
+    "accuracy": {},
+    "confidence_only": {}
+  },
+  "selection": "Two new configurations plus exactly reused control. Pooled inner correct count, macro-F1, declared order. Final choice uses cached inner predictions only.",
+  "features": "Original AV128, MiniLM384 and fixed language16 from text rows with supplied Confidence >=0.8. No speaker attribution. Empty-filter fallback to original whole document. No questionnaire, scores, labels or IDs in inference features.",
+  "preprocessing": "Fixed label-free filtering and frozen local MiniLM; train-only scaling/PCA32, fixed language block scale0.5, sqrt class weights fitted to real fitting supports. No resampling or calibration.",
+  "evaluation": "Original163 participants, same5 outer/3 inner folds and seeds42/137/2026. No validation/test scoring. Long-history exploratory comparison.",
+  "motivation": "94 Mild and74 Moderate repeated errors in existing control;151 of their186 predictions go to majority. Some error cases lose8-19% words at fixed confidence0.8; low-confidence contamination is plausible, not proven. Similar-capacity model isolates the representation change.",
+  "stopping_rule": "One new feature approach, two configurations, at most135 nested pipeline fits and2 full fits. No post-outer-result changes.",
+  "promotion_rule": "Retain49.28 unless primary inner-selected procedure exceeds it on identical folds; call a positive paired interval only conditional exploratory evidence, never independent confirmation. Preserve every model."
+}

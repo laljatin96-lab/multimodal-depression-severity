@@ -1,0 +1,17 @@
+{
+  "source_config": "configs/semantic_accuracy_target.json",
+  "source_directory": "results/semantic_accuracy_target",
+  "mpnet_directory": "checkpoints/pretrained_mpnet",
+  "mpnet_features": "results/mpnet_features",
+  "feature_inputs": ["minilm", "minilm_av", "mpnet", "mpnet_av"],
+  "components": [null, 32], "C_candidates": [0.001, 0.01, 0.1, 1.0],
+  "svm_C_candidates": [1.0, 10.0, 100.0], "calibration_folds": 3, "svm_max_iter": 100000,
+  "max_iter": 2000,
+  "outer_folds": 5, "inner_folds": 3, "fold_seeds": [42, 137, 2026], "fit_seed": 42,
+  "target_accuracy": 0.55, "cpu_threads": 2, "expected_jobs": 15, "expected_fits": 2040,
+  "bootstrap_repetitions": 5000, "bootstrap_seed": 20261025,
+  "selection": "45 candidates: majority, 32 matched logistic pipelines and 12 RBF SVM pipelines. Select encoder/AV fusion/model settings by pooled inner accuracy, then five-class macro-F1, then declared order. Only the selected pipeline is scored on each outer fold.",
+  "calibration": "RBF SVM probabilities use sigmoid calibration from 3 stratified shuffled fitting-only folds, with a fold-local scaler inside each SVM pipeline. ensemble=False fits a final SVM to all fitting rows. Each SVM pipeline.fit entails 4 base SVM fits. No hidden libsvm probability fitting. Learned probabilities and predicted classes use the same argmax.",
+  "encoder": "Fixed public MPNet and previous fixed MiniLM. Both cover all text tokens using nonoverlapping 254-token chunks and length-weighted normalized mean pooling. No encoder fine-tuning; no private text uploads. MPNet general pretraining overlap remains unknown.",
+  "limits": "Post-final exploratory development, fixed five-class targets, unchanged 163 training participants and nested folds. All 275 participants / 281 physical sources are covered in feature preparation. No new validation/test evaluation, full-training refit or reference replacement. No search expansion after outer results. 55% is a target, not a guarantee or independent result."
+}

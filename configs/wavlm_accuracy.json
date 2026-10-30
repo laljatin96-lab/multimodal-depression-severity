@@ -1,0 +1,31 @@
+{
+  "components": 32,
+  "speech_components": 16,
+  "C": [
+    0.001,
+    0.01
+  ],
+  "speech_scales": [
+    0.5,
+    2.0
+  ],
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 225,
+  "target_accuracy": 0.6,
+  "minimum_requested_accuracy": 0.54,
+  "policies": {
+    "language_control": {},
+    "accuracy": {},
+    "wavlm_only": {}
+  },
+  "selection": "Four new configurations plus exact reused49.28 control. Rank inner correct count, macro-F1, declared order. Final choice uses only cached inner predictions.",
+  "features": "Original MiniLM384+AV128 and age-free language16, plus1536 frozen WavLM final-hidden mean/std from at most64 nonoverlapping4s clips spread over each supplied whole-interview WAV. No questionnaire targets/answers or speaker guessing.",
+  "preprocessing": "Fitting-only original base scaler/PCA32, language scaler with fixedscale.5, speech scaler/whitenedPCA16. Speech scale.5 or2. Same normalizedsqrt class weights; no resampling/calibration.",
+  "capacity": "64 classifier coordinates,325 coefficients/intercepts; no fine-tuning of pretrained speech encoder. C=.001 or.01.",
+  "motivation": "Previous searches mostly reused MFCC/visual/text features; the ledger contains no frozen self-supervised speech encoder. Speech representations might add acoustic information for Mild/Moderate cases missed by text. This is a hypothesis, not a guaranteed60% solution.",
+  "evaluation": "Original163 people, same5 outer/3 inner folds and seeds42/137/2026. No validation/test scoring, no external participants. All segment ownership remains within participant.",
+  "stopping_rule": "One feature approach, four fixed configurations; at most225 nested pipeline fits and2 full-training fits. No outer-informed search expansion.",
+  "promotion_rule": "Only a higher primary score on identical folds can earn best-observed status. Distinguish paired conditional evidence from independent confirmation. Retain original49.28 artifacts always."
+}

@@ -1,0 +1,13 @@
+{
+  "source_config": "configs/temporal_summary_comparison.json",
+  "source_directory": "results/temporal_summary_comparison",
+  "feature_inputs": ["cached_visual", "temporal_visual", "cached_av", "temporal_av"],
+  "outer_folds": 5, "inner_folds": 3, "fold_seeds": [42, 137, 2026], "fit_seed": 42,
+  "target_accuracy": 0.55, "cpu_threads": 2,
+  "extra_trees": {"n_estimators": 128, "min_samples_leaf": [3, 1], "max_features": ["sqrt", 0.5]},
+  "hist_gradient_boosting": {"max_iter": 100, "learning_rate": 0.05, "min_samples_leaf": 10, "max_depth": [2, 3], "l2_regularization": [10.0, 1.0], "early_stopping": false},
+  "expected_jobs": 15, "expected_fits": 1500,
+  "bootstrap_repetitions": 5000, "bootstrap_seed": 20261024,
+  "selection": "Choose model family, feature representation and settings by pooled inner accuracy, then five-class macro-F1, then declared candidate order. Include a fold-fitted majority fallback. Only the selected candidate is fitted/scored on each outer fold.",
+  "limitations": "55% is an internal cross-validation target, not a promise or independent clinical/test result. Fixed five-class task and official participant splits. No validation/test scoring, reference replacement or full-training deployment refit. All supplied sources remain accounted for. Post-final exploratory development; do not expand the declared search after inspecting outer results."
+}

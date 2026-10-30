@@ -1,0 +1,22 @@
+{
+  "feature_inputs": ["minilm", "minilm_av", "mpnet", "mpnet_av"],
+  "components": [2, 4, 8],
+  "C_candidates": [0.01, 0.1, 1.0],
+  "ridge_alpha": [10.0, 100.0, 1000.0],
+  "weight_powers": [0.0, 0.5],
+  "fit_seed": 42,
+  "max_iter": 3000,
+  "pls_max_iter": 2000,
+  "policies": {"accuracy": {}},
+  "expected_jobs": 15,
+  "inner_pipeline_fits_per_job": 288,
+  "inner_base_fits_per_job": 288,
+  "cpu_threads": 2,
+  "target_accuracy": 0.53,
+  "selection": "Freeze 96 new candidates plus saved baseline before new outer scores. Rank by pooled inner correct count, then five-class macro F1, then declared order with baseline first. No search expansion or seed selection after outer results.",
+  "preprocessing": "Each real fitting fold independently fits StandardScaler. PLS candidates fit PLSRegression to five-class one-hot fitting labels, with no internal rescaling, then standardize training latent scores and fit L2 multinomial logistic regression. Ridge candidates fit L2 one-vs-rest RidgeClassifier on standardized original features. Ridge softmax decision scores are uncalibrated scores used only for argmax/report compatibility, never interpreted as clinical probabilities or mixed with other models.",
+  "balancing": "None or square-root inverse-frequency weights, normalized to the number of real fitting participants. PLS projection uses real unweighted one-hot targets; weights apply to the final classifier. No synthetic samples in this accuracy-focused continuation.",
+  "scope": "Same 163 original training participants, five outer/three inner folds and seeds42/137/2026. Saved MiniLM and MPNet embeddings with and without original AV summaries. No encoder refit, additional raw extraction, participant exclusion, class merging, target-derived input or recorded gender. Preserve all earlier artifacts.",
+  "finalization": "Aggregate only inner predictions to select full-training refits. Freeze primary and best-new-candidate checkpoints and hashes before a single descriptive evaluation on the previously exposed original validation set. No new test scoring and no selection using validation. Retain old accuracy champion unless the new primary procedure improves mean nested-CV accuracy; any improvement is exploratory.",
+  "limitations": "Repeated exploratory model development on the same participants after prior holdout exposure. Nested CV prevents current fitting/selection leakage but does not make the dataset independent. Seven distinct severe training participants remain seven. 53-60 percent is a target, not a guarantee."
+}

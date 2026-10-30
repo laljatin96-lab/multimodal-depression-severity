@@ -1,0 +1,30 @@
+{
+  "status": "not_run_requires_verified_participant_inputs",
+  "hypothesis": "Verified participant-only transcript content may improve Mild/Moderate separation by removing confirmed nonparticipant rows; speaker coverage is currently zero so this hypothesis is untested.",
+  "candidate_count": 1,
+  "candidate": {
+    "family": "block_logistic",
+    "feature_set": "language",
+    "block_scale": 0.5,
+    "C": 0.001,
+    "weight_power": 0.5,
+    "base_pca_components": 32,
+    "features": "Original frozen MiniLM384 and language16 from independently verified participant rows; original AV128 unchanged. The existing retained 48-coordinate classifier recipe is fixed. No new raw-audio block in the first comparison."
+  },
+  "reference": "Reuse exact retained-original and best-observed procedure OOF predictions, original 163 participants, same outer folds and seeds42/137/2026. Do not refit a completed reference.",
+  "preprocessing": "Fit scaling/PCA/imputation only on each inner or outer fitting population. Fixed recipe; inner folds supply fitting diagnostics, not outer-driven parameter changes.",
+  "max_inner_fits": 45,
+  "max_outer_fits": 15,
+  "max_full_training_fits": 1,
+  "data_gate": "Before any fitting: complete source-bound human/provider transcript review for all163 training participants, separate row-to-WAV alignment checks, frozen annotation hashes, all original participants retained, explicit original-feature fallback for any empty cleaned participant document. No verified annotations currently available.",
+  "promotion": {
+    "accuracy_strictly_above": 0.53,
+    "paired_participant_ci95_delta_against_best_observed_lower_bound_strictly_above": 0,
+    "macro_f1_not_below_best_observed": true,
+    "balanced_accuracy_not_below_best_observed": true,
+    "severe_recall_strictly_above": 0,
+    "serialized_and_raw_inference_parity_required": true,
+    "independent_confirmation_still_required": true
+  },
+  "stopping_rule": "One input variant, one fixed head, no search expansion after outer results. If the data gate is unmet, do not fit or report a new accuracy. Preserve the49.28 default and all prior results."
+}

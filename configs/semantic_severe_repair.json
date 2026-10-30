@@ -1,0 +1,20 @@
+{
+  "source_config": "configs/semantic_accuracy_target.json",
+  "source_directory": "results/semantic_accuracy_target",
+  "audit_directory": "results/semantic_pipeline_audit",
+  "feature_inputs": ["semantic", "semantic_av"],
+  "components": [null, 32], "C_candidates": [0.001, 0.01, 0.1, 1.0],
+  "interventions": ["none", "sqrt_weight", "balanced_weight", "severe_interpolation"],
+  "policies": ["accuracy", "severe_aware"],
+  "minimum_severe_recall": 0.2, "minimum_severe_precision": 0.2,
+  "synthetic_neighbors": 2, "synthetic_max_multiplier": 4,
+  "max_iter": 2000, "outer_folds": 5, "inner_folds": 3,
+  "fold_seeds": [42, 137, 2026], "fit_seed": 42,
+  "cpu_threads": 2, "target_accuracy": 0.55,
+  "expected_jobs": 15, "expected_fits": 2955,
+  "bootstrap_repetitions": 5000, "bootstrap_seed": 20261025,
+  "selection": "Score both prespecified policies. Accuracy selects by pooled inner correct count, macro-F1, then candidate order. Severe-aware applies the same ranking among candidates with inner severe recall and precision >= 0.20; if none qualify, use the accuracy choice and record gate failure. Only selected models score on outer folds.",
+  "augmentation": "Fit scaler/PCA on real fitting participants first. Only class-4 fitting vectors may be interpolated with one of their two nearest class-4 fitting neighbors. Target severe count is min(class-3 count, four times original class-4 count). Store parent indices and interpolation fractions. No synthetic participants, PHQ scores, text, labels, validation or test records are created. Normalize effective fitting weight to original real-participant count.",
+  "scope": "Same verified MiniLM features, participants, five classes and folds as audited 48.47% strategy. No feature/encoder change, no new validation/test scoring, no deployment refit. Original study and audits remain unchanged.",
+  "limitations": "Post-final exploratory repair of severe-blind selection after repeated searches. Gate is an inner-selection constraint, not a promise of outer severe detection. Synthetic vectors add no independent participants or clinical evidence. Report all policies and repeats without choosing a winner using outer results."
+}

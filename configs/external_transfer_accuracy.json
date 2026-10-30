@@ -1,0 +1,37 @@
+{
+  "external_masses": [
+    0.25,
+    0.75,
+    0.0
+  ],
+  "adaptation_scales": [
+    0.5,
+    1.0
+  ],
+  "C": [
+    0.001,
+    0.01
+  ],
+  "semantic_dimensions": 384,
+  "text_components": 32,
+  "av_components": 16,
+  "language_scale": 0.5,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 600,
+  "target_accuracy": 0.54,
+  "minimum_requested_accuracy": 0.54,
+  "policies": {
+    "language_control": {},
+    "accuracy": {},
+    "transfer_only": {},
+    "no_external": {}
+  },
+  "selection": "Eight source-transfer configurations and four same-architecture no-source ablations. Primary chooses only preserved 49.28 control or source-transfer candidates. Accuracy, macro-F1, fixed order on pooled inner predictions. Final choice uses inner predictions only.",
+  "training_data": "41 genuine author-labeled EMU people with PHQ8=PHQ9-item9. Two unmatched transcripts quarantined. 163 original participants and all original splits preserved. No invented AV features or labels.",
+  "features": "Shared fixed MiniLM384 and 16 original language features; interview-specific shared-text copy and AV128 PCA16 branch. Domain routing zeros deactivate missing AV branches; no AV imputation. Only target interview inputs used at inference.",
+  "preprocessing": "Shared text scaling/PCA32 and language scaling on local fitting interviews plus external training people. AV scaler/PCA16 uses fitting original interviews only. Separate sqrt class weights within each cohort, external weight mass .25 or .75 of original; combined total weight normalized to original fitting count. No synthetic rows.",
+  "evaluation": "Same original participant-wise5 outer/3 inner folds and seeds42/137/2026; external people always training only. Primary matched 49.28 control, no-source ablation to isolate transfer value. No official validation/test scoring. Exploratory history caveat remains.",
+  "stopping_rule": "One new externally supervised transfer architecture, twelve fixed configurations including ablations. No post-result search expansion. Retain original best model if no verified improvement."
+}

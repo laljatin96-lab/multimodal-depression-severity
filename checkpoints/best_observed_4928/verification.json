@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "original_training_participants_checked": 163,
+  "maximum_probability_difference": 2.220446049250313e-16,
+  "all_decisions_match": true,
+  "new_fits": 0,
+  "validation_test_scored": false,
+  "source_model_sha256": "599f1ec55d82a4a61f199aace525a23dd7f13f0e6afa77625086a4c4bc20b660"
+}

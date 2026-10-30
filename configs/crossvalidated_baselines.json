@@ -1,0 +1,9 @@
+{
+  "feature_config": "configs/default.json",
+  "C_candidates": [0.01, 0.1, 1.0, 10.0],
+  "folds": 5,
+  "fold_seeds": [42, 137, 2026],
+  "fit_seed": 42,
+  "bootstrap_repetitions": 2000,
+  "rationale": "Selected AV logistic models fit all training labels perfectly but generalize weakly; severe validation support is one. Select the same regularization grid within training only, with fixed repeated folds shared by all four matched variants. No new model family, feature extraction, or test evaluation."
+}

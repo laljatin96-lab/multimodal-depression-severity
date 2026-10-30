@@ -1,0 +1,15 @@
+{
+  "feature_sets": ["age", "language", "age_language"],
+  "block_scales": [0.5, 2.0, 8.0],
+  "C": [0.001, 0.01, 0.1],
+  "weight_powers": [0.0, 0.5],
+  "components": 32,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "target_accuracy": 0.5107975460122699,
+  "policies": {"accuracy": {}, "new_only": {}, "without_age": {}},
+  "selection": "54 new configurations plus the cached baseline. Rank by pooled inner correct count, macro-F1, then fixed order. Primary includes baseline; secondary new-only and language-only policies are fixed before outer scoring. No questionnaire items, gender, IDs, split labels or held-out targets are predictors.",
+  "preprocessing": "Fit StandardScaler/PCA32 to original semantic-AV fitting rows only; append separately standardized fixed age and/or language features, scaled by the declared block weight. Age is recorded metadata, never inferred. All medians, scales, PCA and class weights use fitting participants only.",
+  "evaluation": "Same 163 training participants, 5 outer folds, 3 inner folds and seeds 42/137/2026 as 49.08%. Reused exploratory population, not independent confirmation. Final model choice uses pooled inner predictions only. Official validation is scored only after freezing; test is not scored."
+}

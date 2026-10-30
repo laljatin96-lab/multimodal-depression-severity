@@ -1,0 +1,54 @@
+{
+  "feature_inputs": [
+    "chunk_av",
+    "symptom_av"
+  ],
+  "C": [
+    0.001,
+    0.01,
+    0.1
+  ],
+  "components": [
+    null,
+    32
+  ],
+  "thresholds": [
+    null,
+    0.02,
+    0.04,
+    0.06,
+    0.08,
+    0.1,
+    0.15,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.7,
+    0.9
+  ],
+  "policies": {
+    "severe_priority": {
+      "max_accuracy_loss": 0.05,
+      "max_severe_fpr": 0.1
+    },
+    "accuracy_guarded": {
+      "max_accuracy_loss": 0.02,
+      "max_severe_fpr": 0.05
+    }
+  },
+  "target_accuracy": 0.5338,
+  "max_iter": 2000,
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "inner_pipeline_fits_per_job": 72,
+  "max_outer_pipeline_fits_per_job": 2,
+  "selection": "Within each outer fitting set only: require inner accuracy loss versus unchanged 49.08% procedure within the policy cap and severe false-positive rate within cap. Maximize severe true positives, then minimize nonsevere classification errors, then overall correct count, macro-F1 and declared order. If none qualify preserve baseline with explicit failure flag. Both policies reported.",
+  "scope": "Original mean preserved; add complete chunk dispersion or frozen symptom-versus-absence contrast pooling, plus original AV. Reuse all baseline inner probabilities and outer checkpoints. New candidates use real fitting participants only; no new synthetic vectors, validation/test scoring, or source changes.",
+  "limitations": "Same exploratory training participants and fixed policies; no independent confirmation. Symptom queries are fixed design choices, not validated clinical scores. Speaker identity remains unavailable. No expansion after outer results.",
+  "interventions": [
+    "none",
+    "sqrt_weight"
+  ]
+}

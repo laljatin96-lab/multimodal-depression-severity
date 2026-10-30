@@ -1,0 +1,26 @@
+{
+  "status": "declared_protocol",
+  "source_comparison_config": "configs/raw_frame_comparison.json",
+  "fit_seed": 42,
+  "objective": "Improve five-class participant accuracy without concealing minority-class failures",
+  "feature_inputs": ["cached_visual", "cached_audio_visual", "raw_audio_visual"],
+  "models": {
+    "logistic_regression": {"C_candidates": [0.01, 0.1, 1.0, 10.0], "class_weight": null, "max_iter": 2000},
+    "rbf_svm": {"C_candidates": [0.1, 1.0, 10.0, 100.0], "gamma": "scale", "class_weight": null, "probability": false, "break_ties": true, "max_iter": 100000}
+  },
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "fold_seeds": [42, 137, 2026],
+  "selection": "Inner pooled out-of-fold accuracy; macro-F1 breaks accuracy ties, then smaller C",
+  "scaling": "StandardScaler fitted separately inside each fitting fold",
+  "comparison": "Identical participant folds and four regularization candidates per model/input; training-fold majority baseline required",
+  "budget": {"cpu_threads": 2, "outer_jobs": 90, "total_estimator_fits": 1170},
+  "bootstrap_repetitions": 5000,
+  "bootstrap_seed": 20261024,
+  "evaluation_participants": "163 official training participants only; all 275 participants and all 281 physical sources remain accounted for upstream",
+  "report_metrics": ["accuracy", "five_class_macro_f1", "balanced_accuracy", "per_class_recall", "confusion_matrix"],
+  "output_contract": "Class predictions and explicitly named decision scores; SVM scores must not be presented as calibrated probabilities",
+  "new_test_evaluation": false,
+  "replace_frozen_reference": false,
+  "limitations": "Post-final exploratory model development. Accuracy-first selection differs from earlier macro-F1-first tuning, so logistic controls must be refitted with the same new selection rule. No independent generalization claim."
+}

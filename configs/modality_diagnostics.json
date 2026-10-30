@@ -1,0 +1,11 @@
+{
+  "feature_config": "configs/default.json",
+  "frozen_plan": "results/final_evaluation_plan.json",
+  "C_candidates": [0.01, 0.1, 1.0, 10.0],
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "fold_seeds": [42, 137, 2026],
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "rationale": "Post-final-evaluation diagnostic of audio-only, visual-only and combined participant summaries, with and without class weights. Select C only inside each outer training fold. No validation/test scoring, production-model selection, or final refit. Earlier test exposure is disclosed."
+}

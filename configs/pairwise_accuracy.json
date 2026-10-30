@@ -1,0 +1,28 @@
+{
+  "components": 16,
+  "C": [
+    0.001,
+    0.01
+  ],
+  "fit_seed": 42,
+  "cpu_threads": 2,
+  "expected_jobs": 15,
+  "max_nested_pipeline_fits": 135,
+  "max_binary_head_fits": 1350,
+  "target_accuracy": 0.6,
+  "minimum_requested_accuracy": 0.54,
+  "policies": {
+    "language_control": {},
+    "accuracy": {},
+    "pairwise_only": {}
+  },
+  "selection": "Exactly two new configurations plus reused49.28 control. Rank inner correct count, macro-F1, declared order. Full-data selection from cached inner predictions only.",
+  "features": "Unchanged original MiniLM384 plus AV128; fixed age-free language16. No questionnaire/ID/label columns; no confidence filtering.",
+  "preprocessing": "Training-fold StandardScaler/PCA16 on semanticAV512; separate language scaling with fixed0.5 weight. Shared projection fits all fitting people; each binary head fits only its two classes. Per-pair square-root class-frequency weights normalized to pair sample count.",
+  "architecture": "Ten L2 binary logistic heads; complete-graph least-squares log-odds projection to five scores then softmax. No calibrated probability claim, hierarchy, threshold tuning or external labels.",
+  "capacity": "32 coordinates per head,330 coefficients/intercepts total; C=.001 or.01 to restrain fits with scarce classes. Shared projection avoids estimating a PCA from a tiny rare-class pair.",
+  "motivation": "Retained control produces151 majority predictions among186 repeated Mild/Moderate cases; specialized class-pair boundaries may preserve minority contrasts. Prior hierarchy and RBF SVM failed; this is a different logistic loss/decomposition, not a claim that pairwise modeling was never previously used.",
+  "evaluation": "Original163 people, same5 outer/3 inner folds, seeds42/137/2026. Fixed budget, no outer tuning or validation/test scoring; exploratory after long history.",
+  "stopping_rule": "One model family,two configurations,no post-result expansion. At most135 nested pipeline fits (1350 binary heads) and2 full-training pipelines.",
+  "promotion_rule": "Only a higher primary score on identical outer folds can be considered a best-observed candidate; require positive paired interval and fresh confirmation before claiming supported improvement. Preserve original49.28 regardless."
+}
